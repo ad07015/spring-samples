@@ -1,30 +1,35 @@
 package com.example.demo.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+
 import java.util.Date;
 
+@Entity(name = "races")
 public class Race {
 
-    private Long id;
-    private Date startDate;
+    @Id
+    @GeneratedValue
+    private Long raceId;
+    private Date date;
 
-    public Race(Long id, Date startDate) {
-        this.id = id;
-        this.startDate = startDate;
+    public Race() {
     }
 
-    public Long getId() {
-        return id;
+    public Long getRaceId() {
+        return raceId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setRaceId(Long id) {
+        this.raceId = id;
     }
 
-    public Date getStartDate() {
-        return startDate;
+    public Date getDate() {
+        return date;
     }
 
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
+    public void setDate(Date startDate) {
+        this.date = startDate;
     }
 }
