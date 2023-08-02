@@ -14,4 +14,6 @@ public interface CircuitRepository extends ListCrudRepository<Circuit, Long> {
     Circuit findByNameContains(String name);
 
     Circuit findByLocationEquals(String name);
+
+    Circuit findByCircuitIdEquals(String circuitId);
 }
