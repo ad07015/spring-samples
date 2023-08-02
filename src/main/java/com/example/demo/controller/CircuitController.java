@@ -2,10 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.model.Circuit;
 import com.example.demo.repository.CircuitRepository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,5 +19,26 @@ public class CircuitController {
     @GetMapping
     public List<Circuit> findALl() {
         return circuitRepository.findAll();
+    }
+
+    @GetMapping("/country/{country}")
+    public List<Circuit> findAllByCountry(@PathVariable String country) {
+        return circuitRepository.findByCountryEquals(country);
+    }
+
+    @GetMapping("/name")
+    public Circuit findByName(@RequestParam String name) {
+        return circuitRepository.findByNameContains(name);
+    }
+
+    @GetMapping("/loc")
+    public Circuit findByLocation(@RequestParam String n) {
+        return circuitRepository.findByLocationEquals(n);
+    }
+
+    @GetMapping("/foos")
+    @ResponseBody
+    public String getFoos(@RequestParam String id) {
+        return "ID: " + id;
     }
 }
