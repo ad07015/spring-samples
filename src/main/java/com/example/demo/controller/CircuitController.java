@@ -4,7 +4,6 @@ import com.example.demo.model.Circuit;
 import com.example.demo.repository.CircuitRepository;
 import com.example.demo.service.ApiConsumer;
 import org.springframework.web.bind.annotation.*;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.List;
@@ -13,11 +12,9 @@ import java.util.List;
 @RequestMapping("/api/circuit")
 public class CircuitController {
 
-    private ApiConsumer apiConsumer;
     private CircuitRepository circuitRepository;
 
-    public CircuitController(ApiConsumer apiConsumer, CircuitRepository circuitRepository) {
-        this.apiConsumer = apiConsumer;
+    public CircuitController(CircuitRepository circuitRepository) {
         this.circuitRepository = circuitRepository;
     }
 
@@ -44,15 +41,5 @@ public class CircuitController {
     @GetMapping("/loc")
     public Circuit findByLocation(@RequestParam String n) {
         return circuitRepository.findByLocationEquals(n);
-    }
-
-    @GetMapping("/webclient")
-    public List<Circuit> findAllCircuits() {
-        return apiConsumer.findAll();
-    }
-
-    @GetMapping("/webclient/{id}")
-    public Mono<Circuit> findCircuitById(@PathVariable String id) {
-        return apiConsumer.findById(id);
     }
 }
