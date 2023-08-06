@@ -2,9 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.model.Circuit;
 import com.example.demo.repository.CircuitRepository;
-import com.example.demo.service.ApiConsumer;
 import org.springframework.web.bind.annotation.*;
-import reactor.core.publisher.Mono;
 
 import java.util.List;
 
@@ -12,10 +10,15 @@ import java.util.List;
 @RequestMapping("/api/circuit")
 public class CircuitController {
 
-    private CircuitRepository circuitRepository;
+    private final CircuitRepository circuitRepository;
 
     public CircuitController(CircuitRepository circuitRepository) {
         this.circuitRepository = circuitRepository;
+    }
+
+    @GetMapping("/hello")
+    public String hello() {
+        return "hello";
     }
 
     @GetMapping
