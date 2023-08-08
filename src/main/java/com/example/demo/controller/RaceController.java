@@ -12,7 +12,7 @@ import java.util.List;
 @RequestMapping("/api/race")
 public class RaceController {
 
-    private final RaceRepository raceRepository;
+    private RaceRepository raceRepository;
 
     public RaceController(RaceRepository raceRepository) {
         this.raceRepository = raceRepository;

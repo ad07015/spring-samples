@@ -10,7 +10,7 @@ import java.util.List;
 @RequestMapping("/api/circuit")
 public class CircuitController {
 
-    private final CircuitRepository circuitRepository;
+    private CircuitRepository circuitRepository;
 
     public CircuitController(CircuitRepository circuitRepository) {
         this.circuitRepository = circuitRepository;
