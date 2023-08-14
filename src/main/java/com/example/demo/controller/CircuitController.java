@@ -2,6 +2,8 @@ package com.example.demo.controller;
 
 import com.example.demo.model.Circuit;
 import com.example.demo.repository.CircuitRepository;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -44,5 +46,11 @@ public class CircuitController {
     @GetMapping("/loc")
     public Circuit findByLocation(@RequestParam String n) {
         return circuitRepository.findByLocationEquals(n);
+    }
+
+    @PostMapping
+    public ResponseEntity<Circuit> createCircuit(@RequestBody Circuit newCircuit) {
+        Circuit circuit = circuitRepository.save(newCircuit);
+        return new ResponseEntity<>(circuit, HttpStatus.CREATED);
     }
 }
