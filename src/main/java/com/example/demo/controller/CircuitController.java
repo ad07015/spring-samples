@@ -2,11 +2,13 @@ package com.example.demo.controller;
 
 import com.example.demo.model.Circuit;
 import com.example.demo.repository.CircuitRepository;
+import jakarta.websocket.server.PathParam;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/circuit")
@@ -52,5 +54,15 @@ public class CircuitController {
     public ResponseEntity<Circuit> createCircuit(@RequestBody Circuit newCircuit) {
         Circuit circuit = circuitRepository.save(newCircuit);
         return new ResponseEntity<>(circuit, HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/delete/{circuitId}")
+    public ResponseEntity<Long> deleteById(@PathVariable long circuitId) {
+        Optional<Circuit> optCircuit = circuitRepository.findById(circuitId);
+        if (optCircuit.isPresent()) {
+            circuitRepository.delete(optCircuit.get());
+            return new ResponseEntity<>(circuitId, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(circuitId, HttpStatus.NO_CONTENT);
     }
 }
